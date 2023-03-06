@@ -32,16 +32,12 @@ function showPrompt(arrayPromptLength, min, max){
 
 function checkLists(arrayUser, arrayRandom, arrayLength, htmlElement){
     let sameNum = [];
-    let sameNumCount = 0;
     for (let i = 0; i < arrayLength; i++){
-        console.log(arrayRandom);
-        console.log(arrayUser);
         if(arrayRandom.includes(arrayUser[i])){
             sameNum.push(arrayUser[i]);
-            sameNumCount++;
         }
     }
-    htmlElement.innerHTML = `Hai indovinato ${sameNumCount} numeri. I numeri che hai indovinato sono: ${sameNum}`
+    htmlElement.innerHTML = `Hai indovinato ${sameNum.length} numeri. I numeri che hai indovinato sono: ${sameNum}`
 }
 //MAIN
 
