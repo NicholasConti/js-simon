@@ -22,16 +22,27 @@ function MyCreateRandom(arrayLength, min, max){
 function showPrompt(arrayPromptLength, min, max){
     let inputsUser = [];
     while (inputsUser.length < arrayPromptLength){
-        const inputNumber = prompt(`Inserisci un numero da ${min} a ${max}`);
+        const inputNumber = Number(prompt(`Inserisci un numero da ${min} a ${max}`));
         if ((!inputsUser.includes(inputNumber)) && (inputNumber <= max)){
             inputsUser.push(inputNumber);
         }
     }
-    console.log(inputsUser);
-
     return inputsUser;
 }
 
+function checkLists(arrayUser, arrayRandom, arrayLength, htmlElement){
+    let sameNum = [];
+    let sameNumCount = 0;
+    for (let i = 0; i < arrayLength; i++){
+        console.log(arrayRandom);
+        console.log(arrayUser);
+        if(arrayRandom.includes(arrayUser[i])){
+            sameNum.push(arrayUser[i]);
+            sameNumCount++;
+        }
+    }
+    htmlElement.innerHTML = `Hai indovinato ${sameNumCount} numeri. I numeri che hai indovinato sono: ${sameNum}`
+}
 //MAIN
 
 const nLength = 5;
@@ -49,6 +60,9 @@ setTimeout(function(){
     printList.innerHTML = '';
 }, timeToSee * 1000);
 
-setTimeout(showPrompt, timeToSee2 * 1000, nLength, 1, nMax);
+setTimeout(function(){
+    const userList = showPrompt(nLength, 1, nMax);
+    checkLists(userList, RandomNumList, nLength, printList);
+}, timeToSee2 * 1000);
 
 
